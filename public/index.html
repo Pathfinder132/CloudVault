@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f8fc">
+  <title>CloudVault — File Workspace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="loginView" class="login-shell hidden">
+    <section class="login-card">
+      <div class="brand-mark large">☁</div>
+      <p class="eyebrow">YOUR PERSONAL FILE SPACE</p>
+      <h1>Welcome back.</h1>
+      <p class="muted">Sign in to access your files and folders.</p>
+      <form id="loginForm" class="login-form">
+        <label>Username<input name="username" autocomplete="username" required value="admin"></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required placeholder="Enter your password"></label>
+        <p id="loginError" class="error"></p>
+        <button class="btn primary full" type="submit">Sign in <span>→</span></button>
+      </form>
+      <p class="login-foot">Local demo workspace · CloudVault</p>
+    </section>
+    <div class="login-decoration"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="deco-copy"><span>Organize.</span><span>Store.</span><span>Find.</span></div></div>
+  </div>
+
+  <div id="appView" class="app-shell hidden">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">☁</div><span>cloud<span class="brand-light">vault</span></span></div>
+      <div class="workspace-label">WORKSPACE</div>
+      <button class="nav-item active" data-nav="all"><span class="nav-icon">▦</span> All files</button>
+      <button class="nav-item" data-nav="recent"><span class="nav-icon">◷</span> Recent files</button>
+      <div class="side-divider"></div>
+      <div class="workspace-label">YOUR LIBRARY</div>
+      <button class="nav-item" data-type="folder"><span class="nav-icon folder-icon">▰</span> Folders</button>
+      <button class="nav-item" data-type="image"><span class="nav-icon">▧</span> Images</button>
+      <button class="nav-item" data-type="document"><span class="nav-icon">▤</span> Documents</button>
+      <div class="sidebar-bottom">
+        <div class="storage-card">
+          <div class="storage-heading"><span>Storage</span><span id="storagePercent">0%</span></div>
+          <div class="storage-track"><div id="storageBar"></div></div>
+          <p id="storageText">0 B of 1 GB used</p>
+        </div>
+        <div class="profile"><div class="avatar">A</div><div class="profile-info"><strong id="profileName">Admin</strong><span>Personal workspace</span></div><button id="logoutBtn" class="icon-button" title="Sign out">↗</button></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="mobile-brand"><div class="brand-mark">☁</div> cloudvault</div>
+        <div class="breadcrumbs" id="breadcrumbs"><span>My files</span></div>
+        <div class="top-actions">
+          <div class="search-wrap"><span>⌕</span><input id="searchInput" placeholder="Search files..." type="search"></div>
+          <button id="uploadTopBtn" class="btn primary"><span>＋</span> Upload files</button>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="welcome-row">
+          <div><p class="eyebrow">PERSONAL WORKSPACE</p><h1 id="pageTitle">My files</h1><p class="muted" id="pageSubtitle">Keep everything organized in one place.</p></div>
+          <button id="newFolderBtn" class="btn secondary">＋ New folder</button>
+        </div>
+
+        <div class="stat-grid">
+          <article class="stat-card"><div class="stat-icon purple">▦</div><div><span>Total items</span><strong id="totalItems">0</strong></div><small>In this workspace</small></article>
+          <article class="stat-card"><div class="stat-icon blue">▤</div><div><span>Files</span><strong id="totalFiles">0</strong></div><small>Uploaded documents</small></article>
+          <article class="stat-card"><div class="stat-icon amber">▰</div><div><span>Folders</span><strong id="totalFolders">0</strong></div><small>Organized collections</small></article>
+        </div>
+
+        <div class="section-heading"><div><h2 id="listHeading">All files</h2><span id="itemCount" class="muted small">0 items</span></div><div class="view-label">NAME <span>↕</span></div></div>
+        <div class="file-panel">
+          <div class="file-table-head"><span>Name</span><span>Last modified</span><span>Size</span><span></span></div>
+          <div id="fileList" class="file-list"></div>
+          <div id="emptyState" class="empty-state hidden"><div class="empty-illustration">☁</div><h3>No files here yet</h3><p>Upload a file or create a folder to get started.</p><button class="btn primary" id="emptyUploadBtn">Upload your first file</button></div>
+        </div>
+        <p class="footer-note">CloudVault · Your files, organized.</p>
+      </section>
+    </main>
+  </div>
+
+  <input id="filePicker" type="file" multiple hidden>
+  <div id="toast" class="toast"></div>
+  <div id="modalBackdrop" class="modal-backdrop hidden">
+    <div class="modal" role="dialog" aria-modal="true">
+      <button id="modalClose" class="modal-close">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+  <script src="/js/app.js"></script>
+</body>
+</html>
